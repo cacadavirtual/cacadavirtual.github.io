@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Caçada Virtual — sem privacidade</title>
+  <title>Caçada Virtual — Sem Privacidade</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -31,6 +31,10 @@
       font-family: var(--mono);
       overflow-x: hidden;
       cursor: crosshair;
+      /* camera filter: subtle purple vignette over everything */
+      background-image:
+        radial-gradient(ellipse at center, transparent 40%, rgba(10,0,20,0.7) 100%);
+      background-attachment: fixed;
     }
 
     /* ── SCANLINES overlay ── */
@@ -38,13 +42,15 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.08) 2px,
-        rgba(0,0,0,0.08) 4px
-      );
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0,0,0,0.08) 2px,
+          rgba(0,0,0,0.08) 4px
+        ),
+        radial-gradient(ellipse at center, rgba(80,20,120,0.12) 0%, rgba(5,0,15,0.45) 100%);
       pointer-events: none;
       z-index: 9999;
     }
@@ -126,7 +132,7 @@
     .hero-bg-img {
       position: absolute;
       inset: 0;
-      background: url('TeladeFundo-CVSP.png') center/cover no-repeat;
+      background: url('Tela_de_Fundo_-_CVSP.png') center/cover no-repeat;
       opacity: 0.25;
       filter: saturate(0.5) brightness(0.6);
     }
@@ -659,6 +665,56 @@
       50% { opacity: 0; }
     }
 
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border: 1px solid rgba(168,85,247,0.4);
+      box-shadow: 0 0 60px rgba(168,85,247,0.25);
+      transform: scale(0.93);
+      transition: transform 0.3s;
+    }
+
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-size: 1.5rem;
+      color: var(--grey-light);
+      cursor: pointer;
+      font-family: var(--mono);
+      transition: color 0.2s;
+      background: none;
+      border: none;
+    }
+
+    .lightbox-close:hover { color: var(--purple-light); }
+
+    .gallery-item { cursor: zoom-in; }
+
     /* Separator line */
     .sep {
       border: none;
@@ -687,7 +743,40 @@
     <div class="hero-bg-img"></div>
     <div class="hero-bg-gradient"></div>
     <div class="hero-content">
-      <img src="9b9c3800-52e7-411c-80f2-bd15cbe0f6d4.jpg" alt="Caçada Virtual — sem privacidade" class="hero-logo-img" />
+
+      <!-- Game images + logo row -->
+      <div style="position:relative; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem;">
+
+        <!-- Left image -->
+        <div style="
+          width: clamp(100px, 16vw, 220px);
+          aspect-ratio: 16/9;
+          overflow: hidden;
+          flex-shrink: 0;
+          mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 35%, black 65%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 35%, black 65%, transparent 100%);
+          margin-right: -2rem;
+        ">
+          <img src="Tela_de_Fundo_-_CVSP.png" alt="" style="width:100%; height:100%; object-fit:cover; filter: saturate(0.5) brightness(0.55) hue-rotate(15deg);" />
+        </div>
+
+        <!-- Logo center -->
+        <img src="9b9c3800-52e7-411c-80f2-bd15cbe0f6d4.jpg" alt="Caçada Virtual — sem privacidade" class="hero-logo-img" style="margin:0; position:relative; z-index:2; width: min(480px, 52vw); flex-shrink:0;" />
+
+        <!-- Right image -->
+        <div style="
+          width: clamp(100px, 16vw, 220px);
+          aspect-ratio: 16/9;
+          overflow: hidden;
+          flex-shrink: 0;
+          mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.5) 35%, black 65%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.5) 35%, black 65%, transparent 100%);
+          margin-left: -2rem;
+        ">
+          <img src="Menu_Principal.png" alt="" style="width:100%; height:100%; object-fit:cover; filter: saturate(0.5) brightness(0.55) hue-rotate(15deg);" />
+        </div>
+      </div>
+
       <p class="hero-tagline">Um jogo sobre privacidade digital<span class="cursor"></span></p>
       <p class="hero-phrase">Esteja seguro. <span>Seus dados falam por você.</span></p>
     </div>
@@ -703,9 +792,7 @@
       <div class="card">
         <p class="card-title">Resumo do Jogo</p>
         <p>
-          Caçada Virtual — sem privacidade é um jogo de conscientização sobre privacidade digital. Nele, o jogador
-          navega por um ambiente virtual onde enfrenta desafios ligados à exposição de dados, segurança online e
-          consequências do descuido digital.<br><br>
+          Caçada Virtual — Sem Privacidade é um jogo de conscientização sobre privacidade digital... (em progresso)<br><br>
           O jogo foi desenvolvido como projeto educativo para jovens, simulando situações reais de vulnerabilidade
           na internet.
         </p>
@@ -733,7 +820,7 @@
       <div class="divider"></div>
       <p style="font-size:0.9rem; color: var(--grey-light); line-height:1.9; max-width: 640px;">
         O jogo está disponível para jogar diretamente no navegador via <strong style="color:var(--purple-light)">itch.io</strong>. 
-        Experimente agora mesmo e veja o quanto de informação você expõe sem perceber.
+        Experimente agora mesmo e veja o quão importante a segurança e privacidade digital é através de um jogo interativo de mistério.
       </p>
       <a class="demo-cta" href="https://itch.io" target="_blank">▶ &nbsp;Jogar Agora</a>
     </div>
@@ -803,18 +890,42 @@
     <div class="divider"></div>
     <p style="font-size:0.85rem; color:var(--grey); margin-bottom:0.5rem;">Arte e imagens do jogo</p>
     <div class="gallery-grid">
-      <div class="gallery-item">
+      <div class="gallery-item" onclick="openLightbox('TeladeFundo-CVSP.png', 'Tela de Fundo — CVSP')">
         <img src="TeladeFundo-CVSP.png" alt="Arte do jogo — Fundo CVSP" />
         <div class="overlay"></div>
         <span class="caption">Tela de Fundo — CVSP</span>
       </div>
-      <div class="gallery-item">
+      <div class="gallery-item" onclick="openLightbox('MenuPrincipal.png', 'Menu Principal')">
         <img src="MenuPrincipal.png" alt="Menu Principal do jogo" />
         <div class="overlay"></div>
         <span class="caption">Menu Principal</span>
       </div>
     </div>
   </section>
+
+  <hr class="sep" />
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ fechar</button>
+    <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
+  </div>
+
+  <script>
+    function openLightbox(src, alt) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      img.alt = alt;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
 
   <hr class="sep" />
 
@@ -865,12 +976,11 @@
       </div>
       <div>
         <p class="section-label">// Agradecimentos</p>
-        <h2 class="section-title" style="font-size: clamp(1.4rem,3vw,2rem);">Agradecimentos</h2>
+        <h2 class="section-title" style="font-size: clamp(1.4rem,3vw,2rem);">Importante</h2>
         <div class="divider"></div>
         <div class="card" style="margin-top:0;">
           <p class="card-title">Instituto Federal</p>
           <p>
-            Agradecemos ao Instituto Federal pelo suporte para desenvolvemos este projeto. <br><br>
             Este site foi produzido para fins educacionais. Nenhum dado pessoal do visitante é coletado ou 
             armazenado — afinal, privacidade é o tema do jogo.
           </p>
