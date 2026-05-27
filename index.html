@@ -155,52 +155,40 @@
     .gallery-item .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.7), transparent); }
     .gallery-item .caption { position: absolute; bottom: 1rem; left: 1rem; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--grey-light); text-transform: uppercase; }
 
-    /* imagens extras: ocultas por padrão */
-    .gallery-item.gallery-extra {
-      display: none;
-    }
-    .gallery-item.gallery-extra.visible {
-      display: block;
-    }
+    .gallery-item.gallery-extra { display: none; }
+    .gallery-item.gallery-extra.visible { display: block; }
 
-    /* botão expandir */
-    .gallery-expand-wrap {
-      text-align: center;
-      margin-top: 2rem;
-    }
+    .gallery-expand-wrap { text-align: center; margin-top: 2rem; }
     .gallery-expand-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
+      display: inline-flex; align-items: center; gap: 0.7rem;
       padding: 0.75rem 2rem;
       border: 1px solid rgba(168,85,247,0.4);
       background: transparent;
       color: var(--grey-light);
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.25s;
+      font-family: var(--mono); font-size: 0.78rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.25s;
     }
-    .gallery-expand-btn:hover {
-      border-color: var(--purple-light);
-      color: var(--purple-light);
-      background: rgba(168,85,247,0.05);
-    }
-    .gallery-expand-btn .btn-icon {
-      display: inline-block;
-      transition: transform 0.3s;
-      font-size: 0.9rem;
-    }
-    .gallery-expand-btn.open .btn-icon {
-      transform: rotate(180deg);
-    }
+    .gallery-expand-btn:hover { border-color: var(--purple-light); color: var(--purple-light); background: rgba(168,85,247,0.05); }
+    .gallery-expand-btn .btn-icon { display: inline-block; transition: transform 0.3s; font-size: 0.9rem; }
+    .gallery-expand-btn.open .btn-icon { transform: rotate(180deg); }
 
+    /* ── RECOMENDAÇÕES ── */
     #recomendacoes { background: rgba(26,10,46,0.3); padding: 6rem 0; max-width: 100%; }
     .rec-list { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-    .rec-item { padding: 0.6rem 1.4rem; border: 1px solid rgba(168,85,247,0.3); font-size: 0.82rem; letter-spacing: 0.12em; color: var(--grey-light); transition: all 0.25s; position: relative; }
-    .rec-item::before { content: '▶'; margin-right: 0.5rem; color: var(--purple-light); font-size: 0.6rem; }
+    .rec-item {
+      padding: 0.6rem 1.4rem;
+      border: 1px solid rgba(168,85,247,0.3);
+      font-size: 0.82rem; letter-spacing: 0.12em;
+      color: var(--grey-light);
+      text-decoration: none;
+      transition: all 0.25s;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .rec-item::before { content: '▶'; color: var(--purple-light); font-size: 0.6rem; }
     .rec-item:hover { background: rgba(168,85,247,0.1); border-color: var(--purple-light); color: var(--white); }
 
     #sobre { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
@@ -297,8 +285,8 @@
         <p class="card-title">Curiosidades &amp; Redes Sociais</p>
         <p>O projeto nasceu de uma proposta educacional do IF, unindo tecnologia, arte e conscientização. A estética do jogo mistura pixel art, filtros de câmera de segurança e uma paleta roxo-escuro para transmitir a sensação de vigilância constante.<br><br>Acompanhe o projeto nas redes:</p>
         <div class="social-links">
-          <a class="social-link" href="https://www.instagram.com/cacada_virtual/" target="_blank">▸ Instagram</a>
-          <a class="social-link" href="https://cacadavirtual.itch.io/cacada-virtual" target="_blank">▸ itch.io</a>
+          <a class="social-link" href="https://www.instagram.com/cacada_virtual/" target="_blank" rel="noopener noreferrer">▸ Instagram</a>
+          <a class="social-link" href="https://cacadavirtual.itch.io/cacada-virtual" target="_blank" rel="noopener noreferrer">▸ itch.io</a>
         </div>
       </div>
     </div>
@@ -307,7 +295,7 @@
       <h2 class="section-title">Demo do Jogo</h2>
       <div class="divider"></div>
       <p style="font-size:0.9rem; color:var(--grey-light); line-height:1.9; max-width:640px;">O jogo está disponível para jogar diretamente no navegador via <strong style="color:var(--purple-light)">itch.io</strong>. Experimente agora mesmo e veja o quão importante a segurança e privacidade digital é através de um jogo interativo de mistério.</p>
-      <a class="demo-cta" href="https://cacadavirtual.itch.io/cacada-virtual" target="_blank">▶ &nbsp;Jogar Agora</a>
+      <a class="demo-cta" href="https://cacadavirtual.itch.io/cacada-virtual" target="_blank" rel="noopener noreferrer">▶ &nbsp;Jogar Agora</a>
     </div>
   </section>
 
@@ -348,7 +336,6 @@
 
   <hr class="sep" />
 
-  <!-- GALERIA -->
   <section id="galeria">
     <p class="section-label">// 04</p>
     <h2 class="section-title"><span class="glitch" data-text="Galeria">Galeria</span></h2>
@@ -357,20 +344,18 @@
 
     <div class="gallery-grid" id="galleryGrid">
 
-      <!-- 4 imagens principais (sempre visíveis) -->
-
-       <div class="gallery-item" onclick="openLightbox('TeladeFundo-CVSP.png', 'Tela de Fundo — CVSP')">
+      <div class="gallery-item" onclick="openLightbox('TeladeFundo-CVSP.png', 'Tela de Fundo — CVSP')">
         <img src="TeladeFundo-CVSP.png" alt="Arte do jogo — Fundo CVSP" />
         <div class="overlay"></div>
         <span class="caption">Tela de Fundo — CVSP</span>
       </div>
-      
+
       <div class="gallery-item" onclick="openLightbox('MenuPrincipal.png', 'Menu Principal')">
         <img src="MenuPrincipal.png" alt="Menu Principal do jogo" />
         <div class="overlay"></div>
         <span class="caption">Menu Principal</span>
       </div>
-      
+
       <div class="gallery-item" onclick="openLightbox('TeladeFundoQuarto.jpg', 'Quarto do Detetive')">
         <img src="TeladeFundoQuarto.jpg" alt="Quarto do Detetive" />
         <div class="overlay"></div>
@@ -382,10 +367,6 @@
         <div class="overlay"></div>
         <span class="caption">Tela de Fundo 2</span>
       </div>
-
-      
-
-      <!-- Imagens extras (ocultas por padrão) -->
 
       <div class="gallery-item gallery-extra" onclick="openLightbox('TeladeFundoQuarto2.jpg', 'Quarto do Detetive — variação')">
         <img src="TeladeFundoQuarto2.jpg" alt="Quarto do Detetive — variação" />
@@ -399,7 +380,7 @@
         <span class="caption">Painel</span>
       </div>
 
-      <div class="gallery-item gallery-extra" onclick="openLightbox('MenuPrincipal_2.jpg', 'Menu Principal')">
+      <div class="gallery-item gallery-extra" onclick="openLightbox('MenuPrincipal2.jpg', 'Menu Principal 2')">
         <img src="MenuPrincipal2.jpg" alt="Menu Principal 2" />
         <div class="overlay"></div>
         <span class="caption">Menu Principal 2</span>
@@ -413,7 +394,6 @@
 
     </div>
 
-    <!-- Botão expandir -->
     <div class="gallery-expand-wrap">
       <button class="gallery-expand-btn" id="galleryExpandBtn" onclick="toggleGallery()">
         <span class="btn-icon">▼</span>
@@ -424,13 +404,10 @@
 
   <hr class="sep" />
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <button class="lightbox-close" onclick="closeLightbox()">✕ fechar</button>
     <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
   </div>
-
-  <hr class="sep" />
 
   <div id="recomendacoes" class="section-full">
     <div class="section-inner">
@@ -439,12 +416,12 @@
       <div class="divider"></div>
       <p style="font-size:0.88rem; color:var(--grey-light); line-height:1.9; max-width:600px; margin-bottom:0.5rem;">Conteúdos sobre privacidade digital, vigilância e segurança online que recomendamos:</p>
       <div class="rec-list">
-        <a class="rec-item" href="https://www.imdb.com/title/tt2085059" target="_blank">Black Mirror</span>
-        <a class="rec-item" href="https://www.imdb.com/title/tt10855768" target="_blank">Missing</span>
-        <a class="rec-item" href="https://www.imdb.com/title/tt11464826" target="_blank">O Dilema das Redes</span>
-        <a class="rec-item" href="https://www.imdb.com/title/tt4158110" target="_blank">Mr. Robot</span>
-        <a class="rec-item" href="https://www.imdb.com/title/tt7335184" target="_blank">You</span>
-        <a class="rec-item" href="https://www.imdb.com/title/tt19768508" target="_blank">Cyber Hell: Exposing an Internet Horror</span>
+        <a class="rec-item" href="https://www.imdb.com/title/tt2085059" target="_blank" rel="noopener noreferrer">Black Mirror</a>
+        <a class="rec-item" href="https://www.imdb.com/title/tt10855768" target="_blank" rel="noopener noreferrer">Missing</a>
+        <a class="rec-item" href="https://www.imdb.com/title/tt11464826" target="_blank" rel="noopener noreferrer">O Dilema das Redes</a>
+        <a class="rec-item" href="https://www.imdb.com/title/tt4158110" target="_blank" rel="noopener noreferrer">Mr. Robot</a>
+        <a class="rec-item" href="https://www.imdb.com/title/tt7335184" target="_blank" rel="noopener noreferrer">You</a>
+        <a class="rec-item" href="https://www.imdb.com/title/tt19768508" target="_blank" rel="noopener noreferrer">Cyber Hell: Exposing an Internet Horror</a>
       </div>
     </div>
   </div>
@@ -487,7 +464,6 @@
 
   <hr class="sep" />
 
-  <!-- FEEDBACK -->
   <div id="feedback" class="section-full">
     <div class="section-inner">
       <p class="section-label">// 07</p>
