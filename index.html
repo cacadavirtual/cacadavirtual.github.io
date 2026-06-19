@@ -64,11 +64,28 @@
       border-bottom: 1px solid rgba(90, 45, 130, 0.3);
     }
     .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--purple-light); letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--grey-light); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.2s; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--purple-light); transition: width 0.3s; }
     .nav-links a:hover { color: var(--purple-light); }
     .nav-links a:hover::after { width: 100%; }
+
+    /* NAV — botão questionário em destaque */
+    .nav-quiz-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid var(--purple-light);
+      color: var(--purple-light) !important;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: rgba(168,85,247,0.07);
+      transition: all 0.25s !important;
+      white-space: nowrap;
+    }
+    .nav-quiz-btn::after { display: none !important; }
+    .nav-quiz-btn:hover { background: rgba(168,85,247,0.18) !important; color: var(--white) !important; box-shadow: 0 0 16px rgba(168,85,247,0.25); }
 
     @media (max-width: 700px) {
       nav { flex-direction: column; align-items: flex-start; padding: 0.75rem 1.2rem; gap: 0.6rem; }
@@ -133,42 +150,17 @@
 
     /* ── GALERIA ── */
     #galeria { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
     @media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr; } }
-
-    .gallery-item {
-      position: relative; overflow: hidden;
-      border: 1px solid rgba(90,45,130,0.3);
-      aspect-ratio: 16/9;
-      background: #111;
-      cursor: zoom-in;
-    }
+    .gallery-item { position: relative; overflow: hidden; border: 1px solid rgba(90,45,130,0.3); aspect-ratio: 16/9; background: #111; cursor: zoom-in; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.5s; filter: saturate(0.7) brightness(0.8); }
     .gallery-item:hover img { transform: scale(1.04); filter: saturate(1) brightness(1); }
     .gallery-item .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.7), transparent); }
     .gallery-item .caption { position: absolute; bottom: 1rem; left: 1rem; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--grey-light); text-transform: uppercase; }
-
     .gallery-item.gallery-extra { display: none; }
     .gallery-item.gallery-extra.visible { display: block; }
-
     .gallery-expand-wrap { text-align: center; margin-top: 2rem; }
-    .gallery-expand-btn {
-      display: inline-flex; align-items: center; gap: 0.7rem;
-      padding: 0.75rem 2rem;
-      border: 1px solid rgba(168,85,247,0.4);
-      background: transparent;
-      color: var(--grey-light);
-      font-family: var(--mono); font-size: 0.78rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      cursor: pointer; transition: all 0.25s;
-    }
+    .gallery-expand-btn { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.75rem 2rem; border: 1px solid rgba(168,85,247,0.4); background: transparent; color: var(--grey-light); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.25s; }
     .gallery-expand-btn:hover { border-color: var(--purple-light); color: var(--purple-light); background: rgba(168,85,247,0.05); }
     .gallery-expand-btn .btn-icon { display: inline-block; transition: transform 0.3s; font-size: 0.9rem; }
     .gallery-expand-btn.open .btn-icon { transform: rotate(180deg); }
@@ -176,18 +168,7 @@
     /* ── RECOMENDAÇÕES ── */
     #recomendacoes { background: rgba(26,10,46,0.3); padding: 6rem 0; max-width: 100%; }
     .rec-list { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-    .rec-item {
-      padding: 0.6rem 1.4rem;
-      border: 1px solid rgba(168,85,247,0.3);
-      font-size: 0.82rem; letter-spacing: 0.12em;
-      color: var(--grey-light);
-      text-decoration: none;
-      transition: all 0.25s;
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .rec-item { padding: 0.6rem 1.4rem; border: 1px solid rgba(168,85,247,0.3); font-size: 0.82rem; letter-spacing: 0.12em; color: var(--grey-light); text-decoration: none; transition: all 0.25s; position: relative; display: inline-flex; align-items: center; gap: 0.5rem; }
     .rec-item::before { content: '▶'; color: var(--purple-light); font-size: 0.6rem; }
     .rec-item:hover { background: rgba(168,85,247,0.1); border-color: var(--purple-light); color: var(--white); }
 
@@ -236,6 +217,191 @@
     .lightbox-close:hover { color: var(--purple-light); }
 
     .sep { border: none; border-top: 1px solid rgba(90,45,130,0.2); margin: 5rem auto; max-width: 1100px; }
+
+    /* ══════════════════════════════════════════
+       MODAL QUESTIONÁRIO
+    ══════════════════════════════════════════ */
+    .quiz-modal-overlay {
+      position: fixed; inset: 0; z-index: 20000;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(10px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s;
+      padding: 1.5rem;
+    }
+    .quiz-modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .quiz-modal {
+      position: relative;
+      width: 100%; max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #0d0d14;
+      border: 1px solid rgba(168,85,247,0.4);
+      box-shadow: 0 0 80px rgba(168,85,247,0.15), inset 0 0 60px rgba(10,0,20,0.5);
+      transform: scale(0.95) translateY(12px);
+      transition: transform 0.35s;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(168,85,247,0.4) transparent;
+    }
+    .quiz-modal-overlay.active .quiz-modal { transform: scale(1) translateY(0); }
+    .quiz-modal::-webkit-scrollbar { width: 4px; }
+    .quiz-modal::-webkit-scrollbar-track { background: transparent; }
+    .quiz-modal::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.4); }
+
+    /* barra decorativa topo */
+    .quiz-modal::before {
+      content: '';
+      display: block; width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--purple-light), transparent);
+    }
+
+    .quiz-modal-header {
+      padding: 2rem 2.5rem 1.5rem;
+      border-bottom: 1px solid rgba(90,45,130,0.3);
+      position: sticky; top: 0; z-index: 2;
+      background: #0d0d14;
+    }
+    .quiz-modal-header::after {
+      content: '';
+      display: block; width: 100%; height: 1px;
+      background: linear-gradient(90deg, var(--purple-light), transparent);
+      margin-top: 1.5rem;
+    }
+    .quiz-modal-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--purple-light); opacity: 0.7; margin-bottom: 0.4rem;
+    }
+    .quiz-modal-title {
+      font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700; color: var(--white); line-height: 1.2;
+    }
+    .quiz-modal-subtitle {
+      font-size: 0.78rem; color: var(--grey); margin-top: 0.5rem; line-height: 1.7;
+    }
+    .quiz-close-btn {
+      position: absolute; top: 1.5rem; right: 1.8rem;
+      background: none; border: none; cursor: pointer;
+      color: var(--grey); font-family: var(--mono); font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem;
+    }
+    .quiz-close-btn:hover { color: var(--purple-light); }
+
+    .quiz-modal-body { padding: 2rem 2.5rem 2.5rem; }
+
+    /* bloco de seção dentro do modal */
+    .quiz-section-label {
+      font-size: 0.62rem; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--purple-light); margin-bottom: 1.6rem; margin-top: 2.4rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .quiz-section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(168,85,247,0.35), transparent);
+    }
+    .quiz-section-label:first-child { margin-top: 0; }
+
+    /* fieldset de cada pergunta */
+    .quiz-fieldset {
+      border: none; padding: 0; margin: 0 0 2rem 0;
+    }
+    .quiz-legend {
+      font-size: 0.86rem; line-height: 1.75; color: var(--white);
+      margin-bottom: 1.1rem; display: block;
+    }
+    .quiz-legend strong { color: var(--purple-light); margin-right: 0.4rem; }
+
+    /* opções de radio */
+    .quiz-options { display: flex; flex-direction: column; gap: 0.55rem; }
+    .quiz-option {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.6rem 1rem;
+      border: 1px solid rgba(90,45,130,0.25);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .quiz-option:hover { border-color: rgba(168,85,247,0.45); background: rgba(168,85,247,0.04); }
+    .quiz-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .quiz-radio-box {
+      width: 14px; height: 14px; flex-shrink: 0;
+      border: 1px solid rgba(168,85,247,0.5);
+      position: relative; transition: border-color 0.2s;
+    }
+    .quiz-radio-box::after {
+      content: ''; position: absolute;
+      inset: 3px;
+      background: var(--purple-light);
+      opacity: 0; transition: opacity 0.15s;
+    }
+    .quiz-option input[type="radio"]:checked ~ .quiz-radio-box { border-color: var(--purple-light); }
+    .quiz-option input[type="radio"]:checked ~ .quiz-radio-box::after { opacity: 1; }
+    .quiz-option:has(input:checked) { border-color: rgba(168,85,247,0.5); background: rgba(168,85,247,0.07); }
+    .quiz-option-label { font-size: 0.83rem; color: var(--grey-light); transition: color 0.2s; }
+    .quiz-option:has(input:checked) .quiz-option-label { color: var(--white); }
+
+    /* textarea aberta */
+    .quiz-textarea {
+      width: 100%; background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(90,45,130,0.35);
+      color: var(--white); font-family: var(--mono); font-size: 0.84rem;
+      padding: 0.9rem 1.1rem; outline: none;
+      transition: border-color 0.25s, background 0.25s;
+      resize: vertical; min-height: 110px; margin-top: 0.6rem;
+      border-radius: 0;
+    }
+    .quiz-textarea::placeholder { color: var(--grey); }
+    .quiz-textarea:focus { border-color: rgba(168,85,247,0.6); background: rgba(168,85,247,0.03); }
+
+    /* rodapé do modal */
+    .quiz-modal-footer {
+      padding: 1.5rem 2.5rem 2.5rem;
+      border-top: 1px solid rgba(90,45,130,0.2);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .quiz-note { font-size: 0.72rem; color: var(--grey); line-height: 1.6; }
+    .quiz-submit {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--purple-light);
+      background: transparent; color: var(--purple-light);
+      font-family: var(--mono); font-size: 0.8rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      cursor: pointer; transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .quiz-submit::before { content: ''; position: absolute; inset: 0; background: var(--purple-light); transform: translateX(-100%); transition: transform 0.3s; z-index: 0; }
+    .quiz-submit span { position: relative; z-index: 1; }
+    .quiz-submit:hover { color: var(--black); }
+    .quiz-submit:hover::before { transform: translateX(0); }
+    .quiz-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .quiz-submit:disabled::before { display: none; }
+
+    .quiz-success {
+      display: none;
+      text-align: center; padding: 3rem 2rem;
+    }
+    .quiz-success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .quiz-success-title { font-family: var(--serif); font-size: 1.6rem; color: var(--purple-light); margin-bottom: 0.8rem; }
+    .quiz-success-text { font-size: 0.86rem; color: var(--grey-light); line-height: 1.8; }
+
+    /* progress bar discreta no topo do modal body */
+    .quiz-progress-bar {
+      height: 2px; background: rgba(90,45,130,0.2);
+      margin-bottom: 2rem; position: relative; overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple), var(--purple-light));
+      width: 0%; transition: width 0.4s ease;
+    }
+
+    @media (max-width: 600px) {
+      .quiz-modal-header, .quiz-modal-body, .quiz-modal-footer { padding-left: 1.4rem; padding-right: 1.4rem; }
+    }
   </style>
 </head>
 <body>
@@ -251,6 +417,178 @@
       <li><a href="#feedback">Feedback</a></li>
     </ul>
   </nav>
+
+  <!-- ══════════════════════════════════════════
+       MODAL QUESTIONÁRIO
+  ══════════════════════════════════════════ -->
+  <div class="quiz-modal-overlay" id="quizOverlay" onclick="handleOverlayClick(event)">
+    <div class="quiz-modal" id="quizModal">
+
+      <div class="quiz-modal-header">
+        <p class="quiz-modal-eyebrow">// Aprendizado · Caçada Virtual</p>
+        <h2 class="quiz-modal-title">Questionário de Aprendizado</h2>
+        <p class="quiz-modal-subtitle">Suas respostas nos ajudam a entender o impacto do projeto.<br>Nenhum dado pessoal é coletado.</p>
+        <button class="quiz-close-btn" onclick="closeQuiz()">✕ &nbsp;fechar</button>
+      </div>
+
+      <div id="quizContent">
+        <div class="quiz-modal-body">
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgress"></div></div>
+
+          <form id="quizForm" action="https://formspree.io/f/xrevnlrp" method="POST" onsubmit="handleQuizSubmit(event)">
+            <input type="text" name="_gotcha" style="display:none" />
+
+            <!-- MÚLTIPLA ESCOLHA -->
+            <p class="quiz-section-label">Questões de múltipla escolha</p>
+
+            <fieldset class="quiz-fieldset" data-q="1">
+              <legend class="quiz-legend">
+                <strong>1)</strong> Com que frequência você publica <em>stories</em> ou fotos que mostram o uniforme da sua escola, a fachada do seu prédio ou trajetos da sua rotina?
+              </legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q1_rotina" value="Nunca" required />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Nunca</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1_rotina" value="Raramente" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Raramente</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1_rotina" value="Às vezes" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Às vezes</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1_rotina" value="Quase sempre" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Quase sempre</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q1_rotina" value="Sempre" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Sempre</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="quiz-fieldset" data-q="2">
+              <legend class="quiz-legend">
+                <strong>2)</strong> Para você, manter o perfil da rede social totalmente público e aberto para qualquer pessoa seguir é:
+              </legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q2_perfil_publico" value="Totalmente Seguro" required />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Totalmente Seguro</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2_perfil_publico" value="Seguro" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Seguro</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2_perfil_publico" value="Neutro" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Neutro</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2_perfil_publico" value="Arriscado" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Arriscado</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q2_perfil_publico" value="Totalmente Perigoso" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Totalmente Perigoso</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="quiz-fieldset" data-q="3">
+              <legend class="quiz-legend">
+                <strong>3)</strong> Com que frequência você aceita pedidos de amizade ou segue de volta perfis desconhecidos nas redes sociais?
+              </legend>
+              <div class="quiz-options">
+                <label class="quiz-option">
+                  <input type="radio" name="q3_desconhecidos" value="Nunca" required />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Nunca</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3_desconhecidos" value="Raramente" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Raramente</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3_desconhecidos" value="Às vezes" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Às vezes</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3_desconhecidos" value="Quase sempre" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Quase sempre</span>
+                </label>
+                <label class="quiz-option">
+                  <input type="radio" name="q3_desconhecidos" value="Sempre" />
+                  <span class="quiz-radio-box"></span>
+                  <span class="quiz-option-label">Sempre</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- QUESTÕES ABERTAS -->
+            <p class="quiz-section-label">Questões abertas</p>
+
+            <fieldset class="quiz-fieldset" data-q="4">
+              <legend class="quiz-legend">
+                <strong>4)</strong> Antes de interagir com o site e o jogo "Caçada Virtual", o que você considerava um comportamento seguro na internet? Mudou alguma coisa na sua percepção?
+              </legend>
+              <textarea
+                class="quiz-textarea"
+                name="qa1_percepcao"
+                placeholder="Escreva sua resposta aqui..."
+                required
+                oninput="updateProgress()"
+              ></textarea>
+            </fieldset>
+
+            <fieldset class="quiz-fieldset" data-q="5" style="margin-bottom:0;">
+              <legend class="quiz-legend">
+                <strong>5)</strong> Pensando no que você aprendeu com o projeto, qual lição ou mecânica de proteção você pretende aplicar na sua rotina digital a partir de hoje?
+              </legend>
+              <textarea
+                class="quiz-textarea"
+                name="qa2_licao"
+                placeholder="Escreva sua resposta aqui..."
+                required
+                oninput="updateProgress()"
+              ></textarea>
+            </fieldset>
+
+          </form>
+        </div>
+
+        <div class="quiz-modal-footer">
+          <p class="quiz-note">Nenhum dado pessoal é coletado ou armazenado.</p>
+          <button class="quiz-submit" id="quizSubmitBtn" onclick="document.getElementById('quizForm').requestSubmit()">
+            <span>▶ &nbsp;Enviar Respostas</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- tela de sucesso -->
+      <div class="quiz-success" id="quizSuccess">
+        <div class="quiz-success-icon">✦</div>
+        <h3 class="quiz-success-title">Respostas enviadas!</h3>
+        <p class="quiz-success-text">Obrigado pela participação.<br>Sua contribuição ajuda a melhorar o projeto.</p>
+      </div>
+
+    </div>
+  </div>
 
   <section id="hero" class="section-full">
     <div class="hero-bg-img"></div>
@@ -343,55 +681,46 @@
     <p style="font-size:0.85rem; color:var(--grey); margin-bottom:0.5rem;">Arte e imagens do jogo</p>
 
     <div class="gallery-grid" id="galleryGrid">
-
       <div class="gallery-item" onclick="openLightbox('TeladeFundo-CVSP.png', 'Tela de Fundo — CVSP')">
         <img src="TeladeFundo-CVSP.png" alt="Arte do jogo — Fundo CVSP" />
         <div class="overlay"></div>
         <span class="caption">Tela de Fundo — CVSP</span>
       </div>
-
       <div class="gallery-item" onclick="openLightbox('MenuPrincipal.png', 'Menu Principal')">
         <img src="MenuPrincipal.png" alt="Menu Principal do jogo" />
         <div class="overlay"></div>
         <span class="caption">Menu Principal</span>
       </div>
-
       <div class="gallery-item" onclick="openLightbox('TeladeFundoQuarto.jpg', 'Quarto do Detetive')">
         <img src="TeladeFundoQuarto.jpg" alt="Quarto do Detetive" />
         <div class="overlay"></div>
         <span class="caption">Quarto do Detetive</span>
       </div>
-
       <div class="gallery-item" onclick="openLightbox('TeladeFundo2.jpg', 'Tela de Fundo 2')">
         <img src="TeladeFundo2.jpg" alt="Tela de Fundo 2" />
         <div class="overlay"></div>
         <span class="caption">Tela de Fundo 2</span>
       </div>
-
       <div class="gallery-item gallery-extra" onclick="openLightbox('TeladeFundoQuarto2.jpg', 'Quarto do Detetive — variação')">
         <img src="TeladeFundoQuarto2.jpg" alt="Quarto do Detetive — variação" />
         <div class="overlay"></div>
         <span class="caption">Quarto do Detetive — var.</span>
       </div>
-
       <div class="gallery-item gallery-extra" onclick="openLightbox('painel.jpg', 'Painel')">
         <img src="painel.jpg" alt="Painel" />
         <div class="overlay"></div>
         <span class="caption">Painel</span>
       </div>
-
       <div class="gallery-item gallery-extra" onclick="openLightbox('MenuPrincipal2.jpg', 'Menu Principal 2')">
         <img src="MenuPrincipal2.jpg" alt="Menu Principal 2" />
         <div class="overlay"></div>
         <span class="caption">Menu Principal 2</span>
       </div>
-
       <div class="gallery-item gallery-extra" onclick="openLightbox('inicio.jpg', 'Tela de Início')">
         <img src="inicio.jpg" alt="Tela de Início" />
         <div class="overlay"></div>
         <span class="caption">Tela de Início</span>
       </div>
-
     </div>
 
     <div class="gallery-expand-wrap">
@@ -469,14 +798,40 @@
       <p class="section-label">// 07</p>
       <h2 class="section-title"><span class="glitch" data-text="Feedback">Feedback</span></h2>
       <div class="divider"></div>
-      <p style="font-size:0.88rem; color:var(--grey-light); line-height:1.9; max-width:560px; margin-bottom:0.5rem;">Jogou, visitou o site ou tem alguma sugestão? Deixe seu feedback — ele vai direto pra nossa equipe.</p>
-      <form class="feedback-form" action="https://formspree.io/f/xjgzorby" method="POST" onsubmit="handleSubmit(event)">
-        <textarea name="mensagem" placeholder="Escreva seu feedback aqui..." required></textarea>
-        <input type="text" name="_gotcha" style="display:none" />
-        <button type="submit" class="feedback-submit"><span>▶ &nbsp;Enviar Feedback</span></button>
-      </form>
-      <div class="feedback-success" id="feedback-success">✓ &nbsp;Feedback enviado! Obrigado pela mensagem.</div>
-      <p class="feedback-note" style="margin-top:1.5rem;">Nenhuma informação pessoal é coletada no envio de feedback.</p>
+
+      <div class="two-col" style="align-items: start; gap: 3rem;">
+
+        <!-- coluna esquerda: feedback livre -->
+        <div>
+          <p style="font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--purple-light); margin-bottom:1rem; opacity:0.8;">Comentário livre</p>
+          <p style="font-size:0.86rem; color:var(--grey-light); line-height:1.85; margin-bottom:1.4rem;">Jogou, visitou o site ou tem alguma sugestão? Deixe seu feedback — ele vai direto pra nossa equipe.</p>
+          <form class="feedback-form" style="margin-top:0;" action="https://formspree.io/f/xjgzorby" method="POST" onsubmit="handleSubmit(event)">
+            <textarea name="mensagem" placeholder="Escreva seu feedback aqui..." required></textarea>
+            <input type="text" name="_gotcha" style="display:none" />
+            <button type="submit" class="feedback-submit"><span>▶ &nbsp;Enviar Feedback</span></button>
+          </form>
+          <div class="feedback-success" id="feedback-success">&#10003; &nbsp;Feedback enviado! Obrigado pela mensagem.</div>
+          <p class="feedback-note" style="margin-top:1.2rem;">Nenhuma informação pessoal é coletada no envio de feedback.</p>
+        </div>
+
+        <!-- coluna direita: questionário -->
+        <div>
+          <p style="font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--purple-light); margin-bottom:1rem; opacity:0.8;">Questionário de aprendizado</p>
+          <div style="background:rgba(168,85,247,0.04); border:1px solid rgba(168,85,247,0.3); padding:2rem; position:relative;">
+            <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--purple-light), transparent);"></div>
+            <p style="font-size:0.86rem; color:var(--grey-light); line-height:1.85; margin-bottom:0.8rem;">Já jogou o jogo ou explorou o site? Responda algumas perguntas sobre privacidade digital — suas respostas nos ajudam a medir o impacto do projeto.</p>
+            <ul style="font-size:0.78rem; color:var(--grey); line-height:2; margin-bottom:1.6rem; padding-left:0; list-style:none;">
+              <li style="display:flex; gap:0.6rem; align-items:baseline;"><span style="color:var(--purple-light); flex-shrink:0;">&#9658;</span> 3 questões de múltipla escolha</li>
+              <li style="display:flex; gap:0.6rem; align-items:baseline;"><span style="color:var(--purple-light); flex-shrink:0;">&#9658;</span> 2 questões abertas</li>
+              <li style="display:flex; gap:0.6rem; align-items:baseline;"><span style="color:var(--purple-light); flex-shrink:0;">&#9658;</span> Nenhum dado pessoal coletado</li>
+            </ul>
+            <button class="feedback-submit" onclick="openQuiz()" style="width:100%; justify-content:center;">
+              <span>&#11042; &nbsp;Responder Questionário</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -486,6 +841,7 @@
   </footer>
 
   <script>
+    /* ── LIGHTBOX ── */
     function openLightbox(src, alt) {
       const lb = document.getElementById('lightbox');
       const img = document.getElementById('lightbox-img');
@@ -497,8 +853,8 @@
       document.getElementById('lightbox').classList.remove('active');
       document.body.style.overflow = '';
     }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
+    /* ── GALERIA ── */
     function toggleGallery() {
       const extras = document.querySelectorAll('.gallery-extra');
       const btn = document.getElementById('galleryExpandBtn');
@@ -509,6 +865,7 @@
       btnText.textContent = isOpen ? 'Ver todas as imagens' : 'Mostrar menos';
     }
 
+    /* ── FEEDBACK ── */
     async function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
@@ -517,8 +874,7 @@
       btn.querySelector('span').textContent = 'Enviando...';
       try {
         const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
+          method: 'POST', body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
@@ -533,6 +889,78 @@
         btn.disabled = false;
       }
     }
+
+    /* ── QUESTIONÁRIO (MODAL) ── */
+    function openQuiz(e) {
+      if (e) e.preventDefault();
+      document.getElementById('quizOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      updateProgress();
+    }
+    function closeQuiz() {
+      document.getElementById('quizOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('quizOverlay')) closeQuiz();
+    }
+
+    /* barra de progresso — conta campos preenchidos */
+    function updateProgress() {
+      const form = document.getElementById('quizForm');
+      if (!form) return;
+      const total = 5; // 3 radio groups + 2 textareas
+      let filled = 0;
+
+      ['q1_rotina','q2_perfil_publico','q3_desconhecidos'].forEach(name => {
+        if (form.querySelector(`input[name="${name}"]:checked`)) filled++;
+      });
+      ['qa1_percepcao','qa2_licao'].forEach(name => {
+        const el = form.querySelector(`[name="${name}"]`);
+        if (el && el.value.trim().length > 0) filled++;
+      });
+
+      document.getElementById('quizProgress').style.width = `${(filled / total) * 100}%`;
+    }
+
+    /* escuta mudanças nos radios para atualizar progresso */
+    document.addEventListener('change', e => {
+      if (e.target.closest('#quizForm')) updateProgress();
+    });
+
+    /* submit do questionário */
+    async function handleQuizSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = document.getElementById('quizSubmitBtn');
+      btn.disabled = true;
+      btn.querySelector('span').textContent = 'Enviando...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST', body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('quizContent').style.display = 'none';
+          document.getElementById('quizSuccess').style.display = 'block';
+          document.getElementById('quizProgress').style.width = '100%';
+        } else {
+          btn.querySelector('span').textContent = '✕ Erro. Tente novamente.';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.querySelector('span').textContent = '✕ Erro. Tente novamente.';
+        btn.disabled = false;
+      }
+    }
+
+    /* ESC fecha qualquer coisa aberta */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeQuiz();
+      }
+    });
   </script>
 
 </body>
